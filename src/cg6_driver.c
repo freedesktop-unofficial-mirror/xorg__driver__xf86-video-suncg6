@@ -52,8 +52,8 @@ static void	CG6AdjustFrame(int scrnIndex, int x, int y, int flags);
 
 /* Optional functions */
 static void	CG6FreeScreen(int scrnIndex, int flags);
-static ModeStatus CG6ValidMode(int scrnIndex, DisplayModePtr mode,
-			       Bool verbose, int flags);
+static int	CG6ValidMode(int scrnIndex, DisplayModePtr mode, Bool verbose,
+			     int flags);
 
 void CG6Sync(ScrnInfoPtr pScrn);
 
@@ -105,7 +105,7 @@ static XF86ModuleVersionInfo suncg6VersRec =
 	MODULEVENDORSTRING,
 	MODINFOSTRING1,
 	MODINFOSTRING2,
-	XORG_VERSION_CURRENT,
+	XF86_VERSION_CURRENT,
 	CG6_MAJOR_VERSION, CG6_MINOR_VERSION, CG6_PATCHLEVEL,
 	ABI_CLASS_VIDEODRV,
 	ABI_VIDEODRV_VERSION,
@@ -644,7 +644,7 @@ CG6FreeScreen(int scrnIndex, int flags)
 /* Checks if a mode is suitable for the selected chipset. */
 
 /* Optional */
-static ModeStatus
+static int
 CG6ValidMode(int scrnIndex, DisplayModePtr mode, Bool verbose, int flags)
 {
     if (mode->Flags & V_INTERLACE)
