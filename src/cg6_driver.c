@@ -52,8 +52,8 @@ static void	CG6AdjustFrame(int scrnIndex, int x, int y, int flags);
 
 /* Optional functions */
 static void	CG6FreeScreen(int scrnIndex, int flags);
-static int	CG6ValidMode(int scrnIndex, DisplayModePtr mode, Bool verbose,
-			     int flags);
+static ModeStatus CG6ValidMode(int scrnIndex, DisplayModePtr mode,
+			       Bool verbose, int flags);
 
 void CG6Sync(ScrnInfoPtr pScrn);
 
@@ -72,7 +72,7 @@ void CG6Sync(ScrnInfoPtr pScrn);
  * an upper-case version of the driver name.
  */
 
-DriverRec SUNCG6 = {
+_X_EXPORT DriverRec SUNCG6 = {
     VERSION,
     CG6_DRIVER_NAME,
     CG6Identify,
@@ -105,7 +105,7 @@ static XF86ModuleVersionInfo suncg6VersRec =
 	MODULEVENDORSTRING,
 	MODINFOSTRING1,
 	MODINFOSTRING2,
-	XF86_VERSION_CURRENT,
+	XORG_VERSION_CURRENT,
 	CG6_MAJOR_VERSION, CG6_MINOR_VERSION, CG6_PATCHLEVEL,
 	ABI_CLASS_VIDEODRV,
 	ABI_VIDEODRV_VERSION,
@@ -113,7 +113,7 @@ static XF86ModuleVersionInfo suncg6VersRec =
 	{0,0,0,0}
 };
 
-XF86ModuleData suncg6ModuleData = { &suncg6VersRec, cg6Setup, NULL };
+_X_EXPORT XF86ModuleData suncg6ModuleData = { &suncg6VersRec, cg6Setup, NULL };
 
 pointer
 cg6Setup(pointer module, pointer opts, int *errmaj, int *errmin)
@@ -644,7 +644,7 @@ CG6FreeScreen(int scrnIndex, int flags)
 /* Checks if a mode is suitable for the selected chipset. */
 
 /* Optional */
-static int
+static ModeStatus
 CG6ValidMode(int scrnIndex, DisplayModePtr mode, Bool verbose, int flags)
 {
     if (mode->Flags & V_INTERLACE)
