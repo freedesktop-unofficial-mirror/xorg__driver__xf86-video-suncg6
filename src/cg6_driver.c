@@ -65,9 +65,9 @@ void CG6Sync(ScrnInfoPtr pScrn);
 #define CG6_VERSION 4000
 #define CG6_NAME "SUNCG6"
 #define CG6_DRIVER_NAME "suncg6"
-#define CG6_MAJOR_VERSION 1
-#define CG6_MINOR_VERSION 1
-#define CG6_PATCHLEVEL 0
+#define CG6_MAJOR_VERSION PACKAGE_VERSION_MAJOR
+#define CG6_MINOR_VERSION PACKAGE_VERSION_MINOR
+#define CG6_PATCHLEVEL PACKAGE_VERSION_PATCHLEVEL
 
 /* 
  * This contains the functions needed by the server after loading the driver
