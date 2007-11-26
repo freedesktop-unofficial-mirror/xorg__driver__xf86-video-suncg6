@@ -332,7 +332,7 @@ CG6PreInit(ScrnInfoPtr pScrn, int flags)
     deal with depth
     *********************/
     
-    if (!xf86SetDepthBpp(pScrn, 0, 0, 0, NoDepth24Support)) {
+    if (!xf86SetDepthBpp(pScrn, 8, 0, 0, NoDepth24Support)) {
 	return FALSE;
     } else {
 	/* Check that the returned depth is one we support */
