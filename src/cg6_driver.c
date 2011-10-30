@@ -170,7 +170,7 @@ CG6FreeRec(ScrnInfoPtr pScrn)
 
     pCg6 = GET_CG6_FROM_SCRN(pScrn);
 
-    xfree(pScrn->driverPrivate);
+    free(pScrn->driverPrivate);
     pScrn->driverPrivate = NULL;
 
     return;
@@ -240,7 +240,7 @@ CG6Probe(DriverPtr drv, int flags)
 		   devSections, numDevSections,
 		   drv, &usedChips);
 				    
-    xfree(devSections);
+    free(devSections);
     if (numUsed <= 0)
 	return FALSE;
 
@@ -274,9 +274,9 @@ CG6Probe(DriverPtr drv, int flags)
 	    xf86AddEntityToScreen(pScrn, pEnt->index);
 	    foundScreen = TRUE;
 	}
-	xfree(pEnt);
+	free(pEnt);
     }
-    xfree(usedChips);
+    free(usedChips);
     return foundScreen;
 }
 
@@ -351,7 +351,7 @@ CG6PreInit(ScrnInfoPtr pScrn, int flags)
     /* Collect all of the relevant option flags (fill in pScrn->options) */
     xf86CollectOptions(pScrn, NULL);
     /* Process the options */
-    if (!(pCg6->Options = xalloc(sizeof(CG6Options))))
+    if (!(pCg6->Options = malloc(sizeof(CG6Options))))
 	return FALSE;
     memcpy(pCg6->Options, CG6Options, sizeof(CG6Options));
     xf86ProcessOptions(pScrn->scrnIndex, pScrn->options, pCg6->Options);
